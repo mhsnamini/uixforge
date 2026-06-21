@@ -54,8 +54,9 @@ UIXForge is a curated library of **production-ready UI components** built with v
 # No dependencies
 # Just vanilla code
 ```
-```bash
+
 📂 Project Structure
+```bash
 text
 uixforge/
 ├── authentication/
