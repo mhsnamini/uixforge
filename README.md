@@ -53,3 +53,51 @@ UIXForge is a curated library of **production-ready UI components** built with v
 # No npm install needed
 # No dependencies
 # Just vanilla code
+```
+
+📂 Project Structure
+text
+uixforge/
+├── authentication/
+│   ├── auth-001/
+│   │   ├── preview.png
+│   │   ├── index.html
+│   │   ├── style.css
+│   │   ├── script.js
+│   │   └── README.md
+│   └── ...
+├── buttons/
+├── cards/
+├── navigation/
+├── dashboards/
+├── pricing/
+├── forms/
+├── ai-components/
+├── landing-pages/
+└── effects/
+
+🎯 Roadmap
+Project Structure Setup
+
+Authentication Components (Month 1)
+
+Buttons (Month 2)
+
+Cards (Month 3)
+
+Navigation (Month 4)
+
+Hero Sections (Month 5)
+
+Dashboards (Month 6)
+
+Website Launch
+
+Premium Components
+
+📱 Follow Along
+📸 Instagram: @uixforge
+
+📥 Telegram: t.me/uixforge
+
+💻 GitHub: github.com/mohsenamini/uixforge
