@@ -1,2 +1,55 @@
-# uixforge
-Production-Ready UI Components — Modern UI. Open Source. Built for Developers.
+# UIXForge 🔷
+
+### Production-Ready UI Components
+**Modern UI. Open Source. Built for Developers.**
+
+---
+
+## 📦 About
+
+UIXForge is a curated library of **production-ready UI components** built with vanilla **HTML, CSS, and JavaScript**. No dependencies. No frameworks. Just clean, modern, and accessible code that you can drop into any project.
+
+---
+
+## ✨ Features
+
+- 🔷 **200+ Components** (in progress)
+- 💎 **Production-Ready** — Clean, semantic code
+- ⚡ **Zero Dependencies** — Vanilla HTML/CSS/JS
+- 📱 **Fully Responsive** — Mobile-first design
+- ♿ **Accessible** — WCAG AA compliant
+- 🎨 **Modern Design** — Glassmorphism + Midnight theme
+- 📂 **Well Organized** — Category-based structure
+
+---
+
+## 📁 Categories
+
+| Category | Count | Status |
+|----------|-------|--------|
+| 🔐 Authentication | 20 | 🚧 In Progress |
+| 🔘 Buttons | 20 | 📅 Planned |
+| 🃏 Cards | 20 | 📅 Planned |
+| 🧭 Navigation | 20 | 📅 Planned |
+| 🎯 Hero Sections | 20 | 📅 Planned |
+| 📊 Dashboards | 20 | 📅 Planned |
+| 💰 Pricing | 20 | 📅 Planned |
+| 📝 Forms | 20 | 📅 Planned |
+| 🤖 AI Components | 20 | 📅 Planned |
+| 🏠 Landing Pages | 20 | 📅 Planned |
+| ✨ Effects | 20 | 📅 Planned |
+
+---
+
+## 🚀 Quick Start
+
+1. Browse the components
+2. Open any component folder
+3. Copy the HTML, CSS, and JS
+4. Paste into your project
+5. Customize & Launch!
+
+```bash
+# No npm install needed
+# No dependencies
+# Just vanilla code
