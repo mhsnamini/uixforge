@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AUTH-001 — Modern SaaS Login | UIXForge</title>
+  <!-- CSS link -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ambient background layer (decorative) -->
+  <div class="bg-ambient"></div>
+ 
+  <!-- main login card -->
+  <main class="login-container">
+    <!-- header section -->
+    <div class="login-header">
+      <div class="login-icon" aria-hidden="true">🔷</div>
+      <h1 class="login-title">Welcome Back</h1>
+      <p class="login-subtitle">Sign in to your account</p>
+    </div>
+
+    <!-- login form (no action to keep demo static, but prevent real submit) -->
+    <form id="loginForm" novalidate>
+      <!-- email field -->
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <div class="input-wrapper">
+          <span class="input-icon" aria-hidden="true">✉</span>
+          <input 
+            type="email" 
+            id="email" 
+            class="form-input" 
+            placeholder="hello@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+      </div>
+
+      <!-- password field with toggle visibility -->
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon" aria-hidden="true">🔒</span>
+          <input 
+            type="password" 
+            id="password" 
+            class="form-input" 
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          >
+          <!-- toggle button injected via JS, appears inside wrapper -->
+        </div>
+      </div>
+
+      <!-- options row: remember me + forgot password -->
+      <div class="options-row">
+        <label class="remember-me">
+          <input type="checkbox" id="remember" checked>
+          <span class="checkbox-custom" aria-hidden="true">✓</span>
+          <span>Remember me</span>
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <!-- submit button -->
+      <button type="submit" class="login-btn">
+        <span>Sign In →</span>
+      </button>
+    </form>
+
+    <!-- divider -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">or continue with</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- social login buttons (functional demo – alerts) -->
+    <div class="social-buttons" id="socialButtons">
+      <button class="social-btn" data-provider="Google">G Google</button>
+      <button class="social-btn" data-provider="GitHub">GitHub</button>
+      <button class="social-btn" data-provider="X">X</button>
+    </div>
+
+    <!-- signup link -->
+    <p class="signup-link">
+      Don't have an account? <a href="#">Sign up</a>
+    </p>
+  </main>
+
+  <!-- JavaScript connection -->
+  <script src="script.js"></script>
+</body>
+</html>
