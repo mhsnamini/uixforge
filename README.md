@@ -54,7 +54,7 @@ UIXForge is a curated library of **production-ready UI components** built with v
 # No dependencies
 # Just vanilla code
 ```
-
+```bash
 📂 Project Structure
 text
 uixforge/
@@ -75,29 +75,4 @@ uixforge/
 ├── ai-components/
 ├── landing-pages/
 └── effects/
-
-🎯 Roadmap
-Project Structure Setup
-
-Authentication Components (Month 1)
-
-Buttons (Month 2)
-
-Cards (Month 3)
-
-Navigation (Month 4)
-
-Hero Sections (Month 5)
-
-Dashboards (Month 6)
-
-Website Launch
-
-Premium Components
-
-📱 Follow Along
-📸 Instagram: @uixforge
-
-📥 Telegram: t.me/uixforge
-
-💻 GitHub: github.com/mohsenamini/uixforge
+```
