@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AUTH-003 — OTP Verification Screen | UIXForge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Ambient Orbs -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Grid Overlay -->
+  <div class="grid-overlay"></div>
+
+  <!-- Orbit Rings -->
+  <div class="orbit-container">
+    <div class="orbit-ring outer"><div class="orbit-dot purple"></div></div>
+    <div class="orbit-ring middle"><div class="orbit-dot cyan"></div></div>
+    <div class="orbit-ring inner"><div class="orbit-dot gold"></div></div>
+  </div>
+
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+    <div class="otp-card" id="otpCard">
+      <div class="card-glare" id="cardGlare"></div>
+
+      <!-- Success Overlay -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-icon-wrap" id="successIconWrap">
+          <div class="success-check-circle">
+            <svg viewBox="0 0 24 24" fill="none">
+              <polyline points="4 13 10 19 20 5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="success-title">Verification Complete</div>
+        <div class="success-subtitle">Welcome back to the forge ✨</div>
+      </div>
+
+      <div class="card-content">
+        <!-- Brand -->
+        <div class="brand-section">
+          <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+              <defs>
+                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#6c5ce7"/>
+                  <stop offset="100%" stop-color="#00cec9"/>
+                </linearGradient>
+              </defs>
+              <path d="M30 5L52 17V41L30 53L8 41V17L30 5Z" stroke="url(#logoGrad)" stroke-width="2.2" fill="none"/>
+              <circle cx="30" cy="29" r="9" fill="url(#logoGrad)" opacity="0.85"/>
+              <path d="M30 14L43 22V37L30 45L17 37V22L30 14Z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none" opacity="0.5"/>
+            </svg>
+            <div class="logo-pulse"></div>
+          </div>
+          <h1 class="brand-title"><span class="title-gradient">UIXForge</span></h1>
+          <p class="brand-tagline">Where Design Meets Reality</p>
+        </div>
+
+        <!-- Shield Icon -->
+        <div class="shield-section">
+          <div class="shield-icon-wrap">
+            <svg class="shield-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <circle cx="12" cy="11" r="3"/>
+              <path d="M12 14v2"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Welcome Text -->
+        <div class="welcome-section">
+          <h2 class="welcome-title">Verify Your Identity</h2>
+          <p class="welcome-subtitle">
+            We sent a 6-digit code to<br>
+            <span class="email-highlight" id="displayEmail">user@example.com</span>
+          </p>
+        </div>
+
+        <!-- OTP Input Fields -->
+        <form class="otp-form" id="otpForm" novalidate>
+          <div class="otp-inputs" id="otpInputs">
+            <input type="text" class="otp-field" maxlength="1" inputmode="numeric" pattern="[0-9]" data-index="0" required>
+            <input type="text" class="otp-field" maxlength="1" inputmode="numeric" pattern="[0-9]" data-index="1" required>
+            <input type="text" class="otp-field" maxlength="1" inputmode="numeric" pattern="[0-9]" data-index="2" required>
+            <span class="otp-separator">—</span>
+            <input type="text" class="otp-field" maxlength="1" inputmode="numeric" pattern="[0-9]" data-index="3" required>
+            <input type="text" class="otp-field" maxlength="1" inputmode="numeric" pattern="[0-9]" data-index="4" required>
+            <input type="text" class="otp-field" maxlength="1" inputmode="numeric" pattern="[0-9]" data-index="5" required>
+          </div>
+
+          <!-- Timer & Resend -->
+          <div class="timer-section">
+            <div class="timer-display" id="timerDisplay">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <span class="timer-text" id="timerText">02:00</span>
+            </div>
+            <button type="button" class="resend-btn" id="resendBtn" disabled>
+              Resend Code
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Error Message -->
+          <div class="error-message" id="errorMessage">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span id="errorText">Invalid code. Please try again.</span>
+          </div>
+
+          <!-- Verify Button -->
+          <button type="submit" class="verify-btn" id="verifyBtn">
+            <span class="btn-text">Verify Code →</span>
+            <span class="btn-spinner"></span>
+            <div class="btn-shimmer"></div>
+          </button>
+        </form>
+
+        <!-- Alternative -->
+        <div class="alternative-section">
+          <span class="alt-text">Didn't receive the code?</span>
+          <button type="button" class="alt-method-btn" id="altMethodBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 14 2 4"/>
+            </svg>
+            Try Email Again
+          </button>
+        </div>
+
+        <!-- Back Link -->
+        <p class="back-text">
+          <a href="#" class="back-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Login
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
