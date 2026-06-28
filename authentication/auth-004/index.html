@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AUTH-004 — Password Reset Flow | UIXForge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Ambient Orbs -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Grid Overlay -->
+  <div class="grid-overlay"></div>
+
+  <!-- Orbit Rings -->
+  <div class="orbit-container">
+    <div class="orbit-ring outer"><div class="orbit-dot purple"></div></div>
+    <div class="orbit-ring middle"><div class="orbit-dot cyan"></div></div>
+    <div class="orbit-ring inner"><div class="orbit-dot gold"></div></div>
+  </div>
+
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+    <div class="reset-card" id="resetCard">
+      <div class="card-glare" id="cardGlare"></div>
+
+      <div class="card-content">
+        <!-- Brand -->
+        <div class="brand-section">
+          <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+              <defs>
+                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#6c5ce7"/>
+                  <stop offset="100%" stop-color="#00cec9"/>
+                </linearGradient>
+              </defs>
+              <path d="M30 5L52 17V41L30 53L8 41V17L30 5Z" stroke="url(#logoGrad)" stroke-width="2.2" fill="none"/>
+              <circle cx="30" cy="29" r="9" fill="url(#logoGrad)" opacity="0.85"/>
+              <path d="M30 14L43 22V37L30 45L17 37V22L30 14Z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none" opacity="0.5"/>
+            </svg>
+            <div class="logo-pulse"></div>
+          </div>
+          <h1 class="brand-title"><span class="title-gradient">UIXForge</span></h1>
+          <p class="brand-tagline">Where Design Meets Reality</p>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps" id="progressSteps">
+          <div class="step active" data-step="1">
+            <div class="step-circle">1</div>
+            <span class="step-label">Email</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" data-step="2">
+            <div class="step-circle">2</div>
+            <span class="step-label">Verify</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" data-step="3">
+            <div class="step-circle">3</div>
+            <span class="step-label">Reset</span>
+          </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 1: Enter Email                          -->
+        <!-- ============================================ -->
+        <div class="step-content active" id="step1">
+          <div class="step-header">
+            <div class="step-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 14 2 4"/>
+              </svg>
+            </div>
+            <h2 class="step-title">Forgot Password?</h2>
+            <p class="step-subtitle">No worries, we'll send you a reset link</p>
+          </div>
+
+          <form class="reset-form" id="emailForm" novalidate>
+            <div class="input-group">
+              <div class="input-field-wrapper">
+                <span class="field-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 14 2 4"/>
+                  </svg>
+                </span>
+                <input type="email" class="form-field" id="resetEmail" placeholder=" " autocomplete="email" required>
+                <label class="floating-label">Email Address</label>
+                <span class="field-status"></span>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="sendResetBtn">
+              <span class="btn-text">Send Reset Link →</span>
+              <span class="btn-spinner"></span>
+              <div class="btn-shimmer"></div>
+            </button>
+          </form>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 2: Check Email                          -->
+        <!-- ============================================ -->
+        <div class="step-content" id="step2">
+          <div class="step-header">
+            <div class="step-icon sent-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h2 class="step-title">Check Your Email</h2>
+            <p class="step-subtitle">
+              We sent a reset link to<br>
+              <span class="email-highlight" id="sentEmailDisplay">user@example.com</span>
+            </p>
+          </div>
+
+          <div class="email-animation">
+            <div class="envelope">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 14 2 4"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="submit-btn" id="openEmailBtn">
+              <span class="btn-text">Open Email App →</span>
+              <div class="btn-shimmer"></div>
+            </button>
+            <!-- ⬇️ این دکمه جدید رو اضافه کن -->
+            <button type="button" class="submit-btn" id="simulateResetLink" style="background: linear-gradient(135deg, #10b981, #34d399);">
+              <span class="btn-text">🔗 Simulate: Open Reset Link →</span>
+              <div class="btn-shimmer"></div>
+            </button>
+            <button type="button" class="text-btn" id="backToEmailBtn">
+              ← Try a different email
+            </button>
+          </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 3: New Password                         -->
+        <!-- ============================================ -->
+        <div class="step-content" id="step3">
+          <div class="step-header">
+            <div class="step-icon lock-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <h2 class="step-title">Set New Password</h2>
+            <p class="step-subtitle">Choose a strong password for your account</p>
+          </div>
+
+          <form class="reset-form" id="passwordForm" novalidate>
+            <div class="input-group">
+              <div class="input-field-wrapper">
+                <span class="field-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16.5" r="1.5"/>
+                  </svg>
+                </span>
+                <input type="password" class="form-field" id="newPassword" placeholder=" " autocomplete="new-password" required>
+                <label class="floating-label">New Password</label>
+                <button type="button" class="toggle-password" data-target="newPassword" aria-label="Toggle password visibility">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+                <span class="field-status"></span>
+              </div>
+              <div class="password-strength" id="passwordStrength">
+                <div class="strength-bar"></div><div class="strength-bar"></div>
+                <div class="strength-bar"></div><div class="strength-bar"></div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="input-field-wrapper">
+                <span class="field-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16.5" r="1.5"/>
+                  </svg>
+                </span>
+                <input type="password" class="form-field" id="confirmNewPassword" placeholder=" " autocomplete="new-password" required>
+                <label class="floating-label">Confirm Password</label>
+                <button type="button" class="toggle-password" data-target="confirmNewPassword" aria-label="Toggle password visibility">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+                <span class="confirm-indicator" id="confirmIndicator"></span>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="resetPasswordBtn">
+              <span class="btn-text">Reset Password →</span>
+              <span class="btn-spinner"></span>
+              <div class="btn-shimmer"></div>
+            </button>
+          </form>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SUCCESS OVERLAY                              -->
+        <!-- ============================================ -->
+        <div class="success-overlay" id="successOverlay">
+          <div class="success-icon-wrap" id="successIconWrap">
+            <div class="success-check-circle">
+              <svg viewBox="0 0 24 24" fill="none">
+                <polyline points="4 13 10 19 20 5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="success-title">Password Reset Complete</div>
+          <div class="success-subtitle">You can now login with your new password ✨</div>
+          <button type="button" class="submit-btn" id="goToLoginBtn" style="margin-top:24px;max-width:220px;">
+            <span class="btn-text">Go to Login →</span>
+          </button>
+        </div>
+
+        <!-- Back to Login -->
+        <p class="back-text">
+          <a href="#" class="back-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Login
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
