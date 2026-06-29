@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AUTH-005 — Forgot Password Modal | UIXForge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Ambient Orbs -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Grid Overlay -->
+  <div class="grid-overlay"></div>
+
+  <!-- Orbit Rings -->
+  <div class="orbit-container">
+    <div class="orbit-ring outer"><div class="orbit-dot purple"></div></div>
+    <div class="orbit-ring middle"><div class="orbit-dot cyan"></div></div>
+    <div class="orbit-ring inner"><div class="orbit-dot gold"></div></div>
+  </div>
+
+  <!-- Demo Page Content -->
+  <div class="demo-page">
+    <div class="demo-card">
+      <div class="demo-brand">
+        <svg viewBox="0 0 60 60" fill="none" class="demo-logo">
+          <defs><linearGradient id="demoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c5ce7"/><stop offset="100%" stop-color="#00cec9"/></linearGradient></defs>
+          <path d="M30 5L52 17V41L30 53L8 41V17L30 5Z" stroke="url(#demoGrad)" stroke-width="2.2" fill="none"/>
+          <circle cx="30" cy="29" r="9" fill="url(#demoGrad)" opacity="0.85"/>
+        </svg>
+        <h2>Welcome Back</h2>
+      </div>
+      <div class="demo-form">
+        <input type="email" class="demo-input" placeholder="Email Address" value="user@uixforge.dev">
+        <input type="password" class="demo-input" placeholder="Password" value="********">
+        <button class="demo-btn">Login →</button>
+      </div>
+      <button class="forgot-trigger" id="forgotTrigger">
+        Forgot your password?
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- FORGOT PASSWORD MODAL                         -->
+  <!-- ============================================ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card" id="modalCard">
+      <div class="card-glare" id="cardGlare"></div>
+
+      <!-- Close Button -->
+      <button class="modal-close" id="modalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Success Overlay -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-icon-wrap" id="successIconWrap">
+          <div class="success-check-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="4 13 10 19 20 5"/></svg>
+          </div>
+        </div>
+        <div class="success-title">Email Sent!</div>
+        <div class="success-subtitle">Check your inbox for the reset link ✨</div>
+        <button class="modal-btn" id="successDoneBtn">Done</button>
+      </div>
+
+      <div class="modal-content" id="modalContent">
+        <!-- Brand -->
+        <div class="brand-section">
+          <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+              <defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c5ce7"/><stop offset="100%" stop-color="#00cec9"/></linearGradient></defs>
+              <path d="M30 5L52 17V41L30 53L8 41V17L30 5Z" stroke="url(#logoGrad)" stroke-width="2.2" fill="none"/>
+              <circle cx="30" cy="29" r="9" fill="url(#logoGrad)" opacity="0.85"/>
+            </svg>
+            <div class="logo-pulse"></div>
+          </div>
+          <h1 class="brand-title"><span class="title-gradient">UIXForge</span></h1>
+        </div>
+
+        <!-- Step 1: Enter Email -->
+        <div class="step-content active" id="step1">
+          <div class="step-icon-wrap">
+            <div class="step-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="step-title">Forgot Password?</h2>
+          <p class="step-subtitle">Enter your email and we'll send you a reset link</p>
+
+          <form class="modal-form" id="emailForm" novalidate>
+            <div class="input-group">
+              <div class="input-field-wrapper">
+                <span class="field-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 14 2 4"/>
+                  </svg>
+                </span>
+                <input type="email" class="form-field" id="resetEmail" placeholder=" " autocomplete="email" required>
+                <label class="floating-label">Email Address</label>
+                <span class="field-status"></span>
+              </div>
+              <div class="error-hint" id="emailError"></div>
+            </div>
+
+            <button type="submit" class="modal-btn" id="sendBtn">
+              <span class="btn-text">Send Reset Link →</span>
+              <span class="btn-spinner"></span>
+              <div class="btn-shimmer"></div>
+            </button>
+          </form>
+        </div>
+
+        <!-- Step 2: Check Email -->
+        <div class="step-content" id="step2">
+          <div class="step-icon-wrap">
+            <div class="step-icon sent-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+          </div>
+          <h2 class="step-title">Check Your Email</h2>
+          <p class="step-subtitle">
+            We sent a reset link to<br>
+            <span class="email-highlight" id="sentEmailDisplay">user@example.com</span>
+          </p>
+
+          <div class="email-sent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 14 2 4"/>
+            </svg>
+          </div>
+
+          <div class="step-actions">
+            <button class="modal-btn" id="openEmailBtn">
+              <span class="btn-text">Open Email App →</span>
+            </button>
+            <button class="text-btn" id="backToEditBtn">
+              ← Try a different email
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
