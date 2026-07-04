@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AUTH-008 — Multi-Step Sign Up | UIXForge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Ambient Orbs -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Grid Overlay -->
+  <div class="grid-overlay"></div>
+
+  <!-- Orbit Rings -->
+  <div class="orbit-container">
+    <div class="orbit-ring outer"><div class="orbit-dot purple"></div></div>
+    <div class="orbit-ring middle"><div class="orbit-dot cyan"></div></div>
+    <div class="orbit-ring inner"><div class="orbit-dot gold"></div></div>
+  </div>
+
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+    <div class="signup-card" id="signupCard">
+      <div class="card-glare" id="cardGlare"></div>
+
+      <!-- Success Overlay -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-icon-wrap" id="successIconWrap">
+          <div class="success-check-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="4 13 10 19 20 5"/></svg>
+          </div>
+        </div>
+        <div class="success-title">Account Created!</div>
+        <div class="success-subtitle">Welcome to the forge ✨</div>
+        <button class="signup-btn" id="successDoneBtn">Go to Dashboard →</button>
+      </div>
+
+      <div class="card-content">
+        <!-- Brand -->
+        <div class="brand-section">
+          <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+              <defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c5ce7"/><stop offset="100%" stop-color="#00cec9"/></linearGradient></defs>
+              <path d="M30 5L52 17V41L30 53L8 41V17L30 5Z" stroke="url(#logoGrad)" stroke-width="2.2" fill="none"/>
+              <circle cx="30" cy="29" r="9" fill="url(#logoGrad)" opacity="0.85"/>
+            </svg>
+            <div class="logo-pulse"></div>
+          </div>
+          <h1 class="brand-title"><span class="title-gradient">UIXForge</span></h1>
+          <p class="brand-tagline">Where Design Meets Reality</p>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps" id="progressSteps">
+          <div class="step active" data-step="1">
+            <div class="step-circle">1</div>
+            <span class="step-label">Account</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" data-step="2">
+            <div class="step-circle">2</div>
+            <span class="step-label">Profile</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step" data-step="3">
+            <div class="step-circle">3</div>
+            <span class="step-label">Done</span>
+          </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 1: Account Details                       -->
+        <!-- ============================================ -->
+        <div class="step-content active" id="step1">
+          <div class="step-header">
+            <h2 class="step-title">Create Your Account</h2>
+            <p class="step-subtitle">Start building with UIXForge today</p>
+          </div>
+
+          <form class="signup-form" id="formStep1" novalidate>
+            <div class="input-row">
+              <div class="input-group half">
+                <div class="input-field-wrapper">
+                  <span class="field-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </span>
+                  <input type="text" class="form-field" id="firstName" placeholder=" " required>
+                  <label class="floating-label">First Name</label>
+                </div>
+              </div>
+              <div class="input-group half">
+                <div class="input-field-wrapper">
+                  <span class="field-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </span>
+                  <input type="text" class="form-field" id="lastName" placeholder=" " required>
+                  <label class="floating-label">Last Name</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="input-field-wrapper">
+                <span class="field-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 14 2 4"/></svg>
+                </span>
+                <input type="email" class="form-field" id="signupEmail" placeholder=" " autocomplete="email" required>
+                <label class="floating-label">Email Address</label>
+                <span class="field-status"></span>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <div class="input-field-wrapper">
+                <span class="field-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16.5" r="1.5"/></svg>
+                </span>
+                <input type="password" class="form-field" id="signupPassword" placeholder=" " autocomplete="new-password" required>
+                <label class="floating-label">Password</label>
+                <button type="button" class="toggle-password" data-target="signupPassword">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <div class="password-strength" id="passwordStrength">
+                <div class="strength-bar"></div><div class="strength-bar"></div><div class="strength-bar"></div><div class="strength-bar"></div>
+              </div>
+              <div class="password-hints" id="passwordHints">
+                <span class="hint" data-rule="length">✓ 8+ characters</span>
+                <span class="hint" data-rule="uppercase">✓ Uppercase letter</span>
+                <span class="hint" data-rule="number">✓ Number</span>
+                <span class="hint" data-rule="special">✓ Special character</span>
+              </div>
+            </div>
+
+            <button type="submit" class="signup-btn">
+              <span class="btn-text">Continue →</span>
+              <span class="btn-spinner"></span>
+              <div class="btn-shimmer"></div>
+            </button>
+          </form>
+
+          <p class="step-footer">
+            Already have an account? <a href="#" class="footer-link">Sign in</a>
+          </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 2: Profile Details                       -->
+        <!-- ============================================ -->
+        <div class="step-content" id="step2">
+          <div class="step-header">
+            <h2 class="step-title">Complete Your Profile</h2>
+            <p class="step-subtitle">Tell us a bit about yourself</p>
+          </div>
+
+          <form class="signup-form" id="formStep2" novalidate>
+            <div class="avatar-upload">
+              <div class="avatar-preview" id="avatarPreview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <button type="button" class="avatar-upload-btn" id="avatarUploadBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Upload Photo
+              </button>
+              <input type="file" id="avatarInput" accept="image/*" hidden>
+            </div>
+
+            <div class="input-group">
+              <div class="input-field-wrapper">
+                <span class="field-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <input type="text" class="form-field" id="username" placeholder=" " required>
+                <label class="floating-label">Username</label>
+                <span class="field-status"></span>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label class="select-label">Role</label>
+              <div class="role-options">
+                <label class="role-option active">
+                  <input type="radio" name="role" value="developer" checked>
+                  <div class="role-card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <span>Developer</span>
+                  </div>
+                </label>
+                <label class="role-option">
+                  <input type="radio" name="role" value="designer">
+                  <div class="role-card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                    <span>Designer</span>
+                  </div>
+                </label>
+                <label class="role-option">
+                  <input type="radio" name="role" value="other">
+                  <div class="role-card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <span>Other</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="button-row">
+              <button type="button" class="signup-btn secondary" id="backToStep1">
+                <span class="btn-text">← Back</span>
+              </button>
+              <button type="submit" class="signup-btn">
+                <span class="btn-text">Continue →</span>
+                <span class="btn-spinner"></span>
+                <div class="btn-shimmer"></div>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 3: Confirmation                          -->
+        <!-- ============================================ -->
+        <div class="step-content" id="step3">
+          <div class="step-header">
+            <div class="step-icon-wrap">
+              <div class="step-check-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+            </div>
+            <h2 class="step-title">Confirm Your Details</h2>
+            <p class="step-subtitle">Review everything before creating your account</p>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-row">
+              <span class="summary-label">Name</span>
+              <span class="summary-value" id="summaryName">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Email</span>
+              <span class="summary-value" id="summaryEmail">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Username</span>
+              <span class="summary-value" id="summaryUsername">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Role</span>
+              <span class="summary-value" id="summaryRole">—</span>
+            </div>
+          </div>
+
+          <div class="terms-check">
+            <label class="checkbox-wrapper">
+              <input type="checkbox" id="agreeTerms" required>
+              <span class="checkbox-custom">✓</span>
+              <span class="checkbox-label">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="signup-btn secondary" id="backToStep2">
+              <span class="btn-text">← Back</span>
+            </button>
+            <button type="button" class="signup-btn" id="createAccountBtn">
+              <span class="btn-text">Create Account 🚀</span>
+              <span class="btn-spinner"></span>
+              <div class="btn-shimmer"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
