@@ -1,150 +1,131 @@
-````markdown
 # 📝 AUTH-008 — Multi-Step Sign Up
 
-<div align="center">
-  <img src="https://img.shields.io/badge/UIXForge-Component%20Library-6c5ce7?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEyIDJMJTIgN3YxMGwxMCA1IDEwLTVWN0wxMiAyWiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iNCIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOCIvPjwvc3ZnPg==" alt="UIXForge"/>
-  <img src="https://img.shields.io/badge/AUTH--008-Multi--Step%20Sign%20Up-6c5ce7?style=for-the-badge" alt="AUTH-008"/>
-  <img src="https://img.shields.io/badge/Vanilla-JS-fdcb6e?style=for-the-badge&logo=javascript" alt="Vanilla JS"/>
-  <img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="License"/>
-</div>
+A modern multi-step registration component built with **HTML**, **CSS**, and **Vanilla JavaScript**.
 
-<br/>
-
-<div align="center">
-  <img src="https://img.shields.io/badge/📝%203--Step-Flow-6c5ce7?style=flat-square"/>
-  <img src="https://img.shields.io/badge/📊%20Progress-Bar-a855f7?style=flat-square"/>
-  <img src="https://img.shields.io/badge/🔐%20Password-Strength-00cec9?style=flat-square"/>
-  <img src="https://img.shields.io/badge/🖼️%20Avatar-Upload-fdcb6e?style=flat-square"/>
-  <img src="https://img.shields.io/badge/📱%20Fully-Responsive-10b981?style=flat-square"/>
-</div>
-
-<br/>
-
-> 🚀 **Part of 200+ Production-Ready Components by UIXForge**  
-> A complete multi-step registration experience featuring account setup, profile customization, password validation, avatar upload, and final confirmation.
-
-<br/>
+The component guides users through a structured registration flow, including account creation, profile setup, password validation, avatar upload, and final confirmation.
 
 ---
 
 ## ✨ Features
 
-<table>
-  <tr>
-    <td width="50%">
-      <h3>📝 Registration Flow</h3>
-      <ul>
-        <li>✅ Step 1: Account Information</li>
-        <li>✅ Step 2: Profile Setup</li>
-        <li>✅ Step 3: Review & Confirmation</li>
-        <li>✅ Animated Progress Indicator</li>
-        <li>✅ Previous / Next Navigation</li>
-        <li>✅ Success Completion Overlay</li>
-      </ul>
-    </td>
-    <td width="50%">
-      <h3>🎨 User Experience</h3>
-      <ul>
-        <li>✨ Glassmorphism Interface</li>
-        <li>🖱️ Custom Cursor Effects</li>
-        <li>🔄 Interactive 3D Card Tilt</li>
-        <li>🌌 Animated Particle Background</li>
-        <li>🔐 Live Password Strength Meter</li>
-        <li>📋 Password Validation Checklist</li>
-        <li>🖼️ Avatar Upload & Preview</li>
-        <li>💡 Toast Notifications</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+### Registration Flow
+
+* Three-step registration process
+* Account information setup
+* Profile customization
+* Review and confirmation step
+* Animated progress indicator
+* Previous / Next navigation
+* Registration success overlay
+
+### User Experience
+
+* Glassmorphism interface
+* Responsive design
+* Smooth transitions and animations
+* 3D card tilt interaction
+* Particle background effects
+* Toast notifications
+
+### Validation & Profile Setup
+
+* Live password strength meter
+* Password requirements checklist
+* Avatar upload with preview
+* Role selection
+* Terms & Conditions validation
 
 ---
 
-## 🎮 Interactive Elements
+## 🎮 Available Components
 
-| Element | Description |
-|----------|-------------|
-| **Progress Bar** | Three-step visual progress tracker |
-| **Password Strength Meter** | Real-time password analysis |
-| **Requirements Checklist** | Live validation indicators |
-| **Avatar Upload** | Image upload with preview |
-| **Role Selection** | Developer, Designer, or Other |
-| **Summary Card** | Review entered data before submission |
-| **Terms Checkbox** | Required before registration |
-| **Success Overlay** | Animated completion screen |
-| **3D Tilt Effect** | Interactive card movement |
+| Component               | Description                             |
+| ----------------------- | --------------------------------------- |
+| Progress Bar            | Visual three-step registration tracker  |
+| Account Form            | User information and password setup     |
+| Password Strength Meter | Real-time password analysis             |
+| Requirements Checklist  | Live password validation                |
+| Avatar Upload           | Image upload and preview                |
+| Role Selector           | User role selection                     |
+| Review Summary          | Registration overview before submission |
+| Success Overlay         | Completion confirmation screen          |
 
 ---
 
 ## 🔑 Registration Flow
 
 ```text
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────┐
-│   Step 1     │────▶│   Step 2     │────▶│   Step 3     │────▶│ Success  │
-│   Account    │     │   Profile    │     │   Confirm    │     │ Overlay  │
-│   Details    │     │   Details    │     │ & Submit     │     │    ✅     │
-└──────────────┘     └──────────────┘     └──────────────┘     └──────────┘
+Step 1 → Account Details
+Step 2 → Profile Setup
+Step 3 → Review & Confirmation
+Success → Account Created
 ```
 
 ### Step 1 — Account Details
 
-1. Enter First Name
-2. Enter Last Name
-3. Enter Email Address
-4. Create Password
-5. Meet Password Requirements
-6. Continue to Profile Setup
+* First Name
+* Last Name
+* Email Address
+* Password Creation
+* Password Validation
 
-### Step 2 — Profile Details
+### Step 2 — Profile Setup
 
-1. Upload Avatar (Optional)
-2. Choose Username
-3. Select User Role
-4. Continue or Return to Previous Step
+* Avatar Upload (Optional)
+* Username Selection
+* User Role Selection
 
 ### Step 3 — Confirmation
 
-1. Review Entered Information
-2. Accept Terms & Conditions
-3. Create Account
-4. Complete Registration 🎉
+* Review Information
+* Accept Terms & Conditions
+* Create Account
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```text
 uixforge-auth-008/
-├── index.html          # Multi-step form layout
-├── style.css           # Glassmorphism styles & animations
-├── script.js           # Navigation, validation & upload logic
-└── README.md           # Documentation
+├── index.html
+├── style.css
+├── script.js
+└── README.md
 ```
 
-**Zero dependencies — Pure Vanilla JS** ⚡
+| File       | Description                              |
+| ---------- | ---------------------------------------- |
+| index.html | Multi-step registration layout           |
+| style.css  | Styling, animations, and UI effects      |
+| script.js  | Navigation, validation, and upload logic |
+| README.md  | Documentation                            |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
-### 1. Clone Repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/uixforge-auth-008.git
 cd uixforge-auth-008
 ```
 
-### 2. Launch Project
+### Run Locally
+
+Open the project directly:
 
 ```bash
-# Open directly
 open index.html
-
-# Or use Live Server
-code .
 ```
 
-### 3. Customize Validation Rules
+Or launch it using VS Code Live Server.
+
+---
+
+## ⚙️ Customization
+
+### Password Validation Rules
 
 ```javascript
 const rules = {
@@ -155,7 +136,7 @@ const rules = {
 };
 ```
 
-### Add Registration API
+### Connect Registration API
 
 ```javascript
 document
@@ -177,6 +158,18 @@ document
 
 ---
 
+## 🔒 Password Requirements
+
+| Rule              | Requirement                   |
+| ----------------- | ----------------------------- |
+| Length            | Minimum 8 characters          |
+| Uppercase         | At least one uppercase letter |
+| Number            | At least one digit            |
+| Special Character | At least one symbol           |
+| Strength Meter    | Four-level indicator          |
+
+---
+
 ## 🎨 Color Palette
 
 ```css
@@ -190,19 +183,7 @@ document
 
 ---
 
-## 🔧 Password Validation Rules
-
-| Rule | Requirement | Indicator |
-|--------|-------------|------------|
-| Length | Minimum 8 characters | ✓ / ✕ |
-| Uppercase | At least one uppercase letter | ✓ / ✕ |
-| Number | At least one digit | ✓ / ✕ |
-| Special Character | At least one symbol | ✓ / ✕ |
-| Strength Meter | 4-level visual indicator | Weak → Strong |
-
----
-
-## 🧩 Integration Guide
+## 🧩 Integration Example
 
 ### React / Next.js
 
@@ -224,7 +205,6 @@ export default function RegisterPage() {
   return (
     <MultiStepSignUp
       onRegister={handleRegister}
-      redirectUrl="/dashboard"
     />
   );
 }
@@ -241,100 +221,76 @@ export default function RegisterPage() {
 </template>
 ```
 
-> ⚠️ Full framework integrations coming soon!
-
 ---
 
 ## 🌐 Browser Support
 
-| Browser | Support |
-|----------|----------|
-| Chrome 90+ | ✅ Full |
-| Firefox 88+ | ✅ Full |
-| Safari 14+ | ✅ Full |
-| Edge 90+ | ✅ Full |
-| Opera 76+ | ✅ Full |
+| Browser | Version |
+| ------- | ------- |
+| Chrome  | 90+     |
+| Firefox | 88+     |
+| Safari  | 14+     |
+| Edge    | 90+     |
+| Opera   | 76+     |
 
 ---
 
 ## 📊 Performance
 
-| Metric | Score |
-|----------|----------|
-| Lighthouse | 98+ |
-| Page Size | ~22KB |
-| Load Time | <200ms |
-| Dependencies | 0 |
+| Metric           | Value    |
+| ---------------- | -------- |
+| Lighthouse Score | 98+      |
+| Bundle Size      | ~22 KB   |
+| Load Time        | < 200 ms |
+| Dependencies     | 0        |
 
 ---
 
 ## 🎯 Use Cases
 
-- 📝 Registration Pages
-- 🚀 SaaS Onboarding
-- 💼 Enterprise User Creation
-- 🛒 E-Commerce Sign Up
-- 🎮 Gaming Platforms
-- 📱 Mobile-First Applications
-
----
-
-## 📦 UIXForge Component Library
-
-| Component | ID | Description |
-|------------|-----|-------------|
-| Login Form | AUTH-001 | Ethereal Login Form |
-| Register Form | AUTH-002 | Multi-Step Registration |
-| OTP Verification | AUTH-003 | Verification Screen |
-| Password Reset | AUTH-004 | Password Recovery Flow |
-| Forgot Password Modal | AUTH-005 | Recovery Modal |
-| Social Login Buttons | AUTH-006 | Provider Login Buttons |
-| 2FA Authentication | AUTH-007 | App / SMS / Recovery |
-| **Multi-Step Sign Up** | **AUTH-008** | **This Component** ✨ |
+* User Registration Pages
+* SaaS Onboarding Flows
+* Enterprise Applications
+* E-commerce Platforms
+* Gaming Platforms
+* Mobile-First Products
 
 ---
 
 ## 🤝 Contributing
 
 ```bash
-# Fork repository
-git checkout -b feature/add-more-roles
+git checkout -b feature/new-feature
 
-# Commit changes
-git commit -m "✨ Add more role options"
+git commit -m "feat: add new feature"
 
-# Push branch
-git push origin feature/add-more-roles
+git push origin feature/new-feature
 ```
 
-Then create a Pull Request 🎉
+Then create a Pull Request.
 
 ---
 
 ## 📄 License
 
-MIT © UIXForge
+MIT License
+
+Copyright © UIXForge
 
 ---
 
-## 🔗 Links
+## 🔗 Resources
 
-<div align="center">
-
-[![Telegram](https://img.shields.io/badge/Source%20Code-Telegram-26A5E4?style=for-the-badge&logo=telegram)](https://t.me/uixforge)
-
-[![GitHub](https://img.shields.io/badge/Components-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/uixforge)
-
-[![Website](https://img.shields.io/badge/Docs-Website-6c5ce7?style=for-the-badge&logo=google-chrome)](https://uixforge.dev)
-
-</div>
+* Telegram Community
+* GitHub Repository
+* Official Documentation
 
 ---
 
 <div align="center">
-  <br/>
-  <img src="https://img.shields.io/badge/Made%20with-❤️%20by%20UIXForge-6c5ce7?style=for-the-badge"/>
-  <br/><br/>
-  <sub>⚡ 200+ Components • Zero Dependencies • Production Ready</sub>
+
+**UIXForge Component Library**
+
+Production-ready authentication components built with modern web technologies.
+
 </div>
-````
