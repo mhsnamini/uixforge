@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AUTH-011 — Password Strength Indicator | UIXForge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Ambient Orbs -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Grid Overlay -->
+  <div class="grid-overlay"></div>
+
+  <!-- Orbit Rings -->
+  <div class="orbit-container">
+    <div class="orbit-ring outer"><div class="orbit-dot purple"></div></div>
+    <div class="orbit-ring middle"><div class="orbit-dot cyan"></div></div>
+    <div class="orbit-ring inner"><div class="orbit-dot gold"></div></div>
+  </div>
+
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+    <div class="password-card" id="passwordCard">
+      <div class="card-glare" id="cardGlare"></div>
+
+      <div class="card-content">
+        <!-- Brand -->
+        <div class="brand-section">
+          <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+              <defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c5ce7"/><stop offset="100%" stop-color="#00cec9"/></linearGradient></defs>
+              <path d="M30 5L52 17V41L30 53L8 41V17L30 5Z" stroke="url(#logoGrad)" stroke-width="2.2" fill="none"/>
+              <circle cx="30" cy="29" r="9" fill="url(#logoGrad)" opacity="0.85"/>
+            </svg>
+            <div class="logo-pulse"></div>
+          </div>
+          <h1 class="brand-title"><span class="title-gradient">UIXForge</span></h1>
+          <p class="brand-tagline">Where Design Meets Reality</p>
+        </div>
+
+        <!-- Shield Icon -->
+        <div class="shield-section">
+          <div class="shield-icon-wrap">
+            <svg class="shield-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="welcome-section">
+          <h2 class="welcome-title">Create a Password</h2>
+          <p class="welcome-subtitle">Make it strong to keep your account secure</p>
+        </div>
+
+        <!-- Password Input -->
+        <div class="input-group">
+          <div class="input-field-wrapper">
+            <span class="field-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input type="password" class="form-field" id="passwordInput" placeholder=" " autocomplete="new-password" required>
+            <label class="floating-label">Enter Password</label>
+            <button type="button" class="toggle-password" data-target="passwordInput">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Strength Meter -->
+        <div class="strength-section" id="strengthSection">
+          <!-- Meter Bars -->
+          <div class="strength-meter" id="strengthMeter">
+            <div class="strength-bar" data-level="1"></div>
+            <div class="strength-bar" data-level="2"></div>
+            <div class="strength-bar" data-level="3"></div>
+            <div class="strength-bar" data-level="4"></div>
+          </div>
+          <!-- Label -->
+          <div class="strength-label" id="strengthLabel">
+            <span class="strength-text">Too Weak</span>
+          </div>
+        </div>
+
+        <!-- Requirements Checklist -->
+        <div class="requirements" id="requirements">
+          <div class="requirement" data-rule="length">
+            <span class="req-icon"></span>
+            <span class="req-text">At least 8 characters</span>
+          </div>
+          <div class="requirement" data-rule="uppercase">
+            <span class="req-icon"></span>
+            <span class="req-text">One uppercase letter</span>
+          </div>
+          <div class="requirement" data-rule="lowercase">
+            <span class="req-icon"></span>
+            <span class="req-text">One lowercase letter</span>
+          </div>
+          <div class="requirement" data-rule="number">
+            <span class="req-icon"></span>
+            <span class="req-text">One number</span>
+          </div>
+          <div class="requirement" data-rule="special">
+            <span class="req-icon"></span>
+            <span class="req-text">One special character</span>
+          </div>
+        </div>
+
+        <!-- Strength Details -->
+        <div class="strength-details" id="strengthDetails">
+          <div class="detail-card">
+            <div class="detail-icon" id="detailIcon">🛡️</div>
+            <div class="detail-info">
+              <span class="detail-title" id="detailTitle">Weak Password</span>
+              <span class="detail-desc" id="detailDesc">Add more variety to make it stronger</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="input-group">
+          <div class="input-field-wrapper">
+            <span class="field-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input type="password" class="form-field" id="confirmInput" placeholder=" " autocomplete="new-password" required>
+            <label class="floating-label">Confirm Password</label>
+            <button type="button" class="toggle-password" data-target="confirmInput">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+            <span class="confirm-indicator" id="confirmIndicator"></span>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button type="button" class="submit-btn" id="submitBtn" disabled>
+          <span class="btn-text">Create Account →</span>
+          <div class="btn-shimmer"></div>
+        </button>
+
+        <!-- Crack Time -->
+        <div class="crack-time" id="crackTime">
+          <span class="crack-label">Estimated time to crack:</span>
+          <span class="crack-value" id="crackValue">Instantly</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
