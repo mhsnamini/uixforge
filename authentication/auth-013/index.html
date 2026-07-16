@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AUTH-013 — Biometric Auth UI | UIXForge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Ambient Orbs -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Grid Overlay -->
+  <div class="grid-overlay"></div>
+
+  <!-- Orbit Rings -->
+  <div class="orbit-container">
+    <div class="orbit-ring outer"><div class="orbit-dot purple"></div></div>
+    <div class="orbit-ring middle"><div class="orbit-dot cyan"></div></div>
+    <div class="orbit-ring inner"><div class="orbit-dot gold"></div></div>
+  </div>
+
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+    <div class="biometric-card" id="biometricCard">
+      <div class="card-glare" id="cardGlare"></div>
+
+      <!-- Success Overlay -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-icon-wrap" id="successIconWrap">
+          <div class="success-check-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="4 13 10 19 20 5"/></svg>
+          </div>
+        </div>
+        <div class="success-title">Authenticated!</div>
+        <div class="success-subtitle">Welcome back 🔐</div>
+        <button class="bio-btn" id="successDoneBtn">Continue →</button>
+      </div>
+
+      <div class="card-content">
+        <!-- Brand -->
+        <div class="brand-section">
+          <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+              <defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c5ce7"/><stop offset="100%" stop-color="#00cec9"/></linearGradient></defs>
+              <path d="M30 5L52 17V41L30 53L8 41V17L30 5Z" stroke="url(#logoGrad)" stroke-width="2.2" fill="none"/>
+              <circle cx="30" cy="29" r="9" fill="url(#logoGrad)" opacity="0.85"/>
+            </svg>
+            <div class="logo-pulse"></div>
+          </div>
+          <h1 class="brand-title"><span class="title-gradient">UIXForge</span></h1>
+          <p class="brand-tagline">Where Design Meets Reality</p>
+        </div>
+
+        <!-- User Avatar -->
+        <div class="user-section">
+          <div class="user-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3 class="user-name">John Doe</h3>
+          <p class="user-email">john@uixforge.dev</p>
+        </div>
+
+        <!-- Biometric Tabs -->
+        <div class="bio-tabs" id="bioTabs">
+          <button class="bio-tab active" data-method="fingerprint">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 0 0-10 10c0 4.5 3 8.5 7 9.5v-2c-2.5-.8-4.5-3-4.5-5.5 0-3.5 3-6.5 7.5-6.5s7.5 3 7.5 6.5c0 2.5-2 4.7-4.5 5.5v2c4-1 7-5 7-9.5A10 10 0 0 0 12 2z"/>
+              <path d="M12 6a6 6 0 0 0-6 6c0 3 2 5.5 4.5 6.5v-3c-1-.6-1.5-1.5-1.5-3 0-2 1.5-3.5 3-3.5s3 1.5 3 3.5c0 1.5-.5 2.4-1.5 3v3C16 17.5 18 15 18 12a6 6 0 0 0-6-6z"/>
+            </svg>
+            <span>Fingerprint</span>
+          </button>
+          <button class="bio-tab" data-method="face">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              <circle cx="9" cy="16" r="1"/><circle cx="15" cy="16" r="1"/>
+            </svg>
+            <span>Face ID</span>
+          </button>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- FINGERPRINT SCAN                             -->
+        <!-- ============================================ -->
+        <div class="bio-content active" id="content-fingerprint">
+          <div class="fingerprint-container" id="fingerprintContainer">
+            <!-- Fingerprint SVG -->
+            <div class="fingerprint-scan" id="fingerprintScan">
+              <svg viewBox="0 0 120 120" fill="none" class="fingerprint-svg">
+                <!-- Outer rings -->
+                <ellipse cx="60" cy="60" rx="50" ry="55" stroke="currentColor" stroke-width="1.5" opacity="0.2"/>
+                <ellipse cx="60" cy="58" rx="42" ry="47" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+                <ellipse cx="60" cy="56" rx="34" ry="39" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                <ellipse cx="60" cy="54" rx="26" ry="31" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                <ellipse cx="60" cy="52" rx="18" ry="23" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+                <ellipse cx="60" cy="50" rx="10" ry="15" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
+                <!-- Inner fingerprint ridges -->
+                <path d="M48 48 Q54 38 60 38 Q66 38 72 48" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6"/>
+                <path d="M44 55 Q52 42 60 42 Q68 42 76 55" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/>
+                <path d="M42 62 Q50 50 60 50 Q70 50 78 62" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.3"/>
+              </svg>
+              <!-- Scan line -->
+              <div class="scan-line" id="scanLine"></div>
+              <!-- Glow ring -->
+              <div class="fingerprint-glow"></div>
+            </div>
+          </div>
+          <p class="bio-hint" id="fingerprintHint">Place your finger on the sensor</p>
+          <button class="bio-btn" id="scanFingerprintBtn">
+            <span class="btn-text">Scan Fingerprint</span>
+            <span class="btn-spinner"></span>
+            <div class="btn-shimmer"></div>
+          </button>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- FACE ID SCAN                                 -->
+        <!-- ============================================ -->
+        <div class="bio-content" id="content-face">
+          <div class="face-scan-container" id="faceScanContainer">
+            <!-- Face outline -->
+            <div class="face-outline">
+              <svg viewBox="0 0 120 140" fill="none" class="face-svg">
+                <!-- Head shape -->
+                <ellipse cx="60" cy="65" rx="45" ry="55" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+                <!-- Scanning frame -->
+                <rect x="15" y="15" width="90" height="100" rx="20" stroke="currentColor" stroke-width="1.5" opacity="0.4" stroke-dasharray="8 4"/>
+                <!-- Eyes -->
+                <ellipse cx="45" cy="55" rx="8" ry="6" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+                <ellipse cx="75" cy="55" rx="8" ry="6" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+                <!-- Nose -->
+                <path d="M60 60 L58 72 L62 72" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+                <!-- Mouth -->
+                <path d="M50 82 Q60 90 70 82" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+              </svg>
+              <!-- Scanning animation -->
+              <div class="face-scan-line" id="faceScanLine"></div>
+              <div class="face-glow"></div>
+            </div>
+          </div>
+          <p class="bio-hint" id="faceHint">Look directly at the camera</p>
+          <button class="bio-btn" id="scanFaceBtn">
+            <span class="btn-text">Scan Face</span>
+            <span class="btn-spinner"></span>
+            <div class="btn-shimmer"></div>
+          </button>
+        </div>
+
+        <!-- Alternative -->
+        <div class="alt-section">
+          <span class="alt-text">or</span>
+          <button class="alt-btn" id="usePasswordBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Use Password Instead
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
